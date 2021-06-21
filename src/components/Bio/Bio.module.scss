@@ -1,0 +1,64 @@
+.bio {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bioImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 20em;
+  max-height: 20em;
+
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 3em;
+
+  img {
+    width: 100%;
+  }
+}
+
+// .bioImage {
+//   width: 20em;
+//   background-color: green;
+
+//   img {
+//     border-radius: 50%;
+//     width: 100%;
+//     height: 18em;
+//     object-fit: contain;
+//     // object-position: top left;
+//   }
+// }
+
+.bioContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bioContentName {
+  font-weight: bold;
+  font-size: 52px;
+  line-height: 65px;
+  color: #4948a7;
+  margin: 0;
+}
+
+.bioContentTagline {
+  font-size: 37px;
+  line-height: 47px;
+  color: #414141;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.bioContentRole {
+  font-weight: bold;
+  font-size: 29px;
+  line-height: 36px;
+  color: #414141;
+  margin: 0;
+}
