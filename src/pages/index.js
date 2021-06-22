@@ -1,10 +1,18 @@
 import Head from "next/head";
+
+import { useAuth } from "../hooks/useAuth";
+
 import Bio from "../components/Bio";
 import Post from "../components/Post";
 import PostForm from "../components/PostForm";
 import styles from "../styles/Home.module.scss";
+import profilePic from "../../public/static/images/profile.jpg";
 
 export default function Home() {
+  const { user, logIn } = useAuth();
+
+  console.log("user", user);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,9 +21,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <p>
+        <button onClick={logIn}>Log In</button>
+      </p>
+
       <main className={styles.main}>
         <Bio
-          headshot="https://images.unsplash.com/photo-1497636577773-f1231844b336?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit"
+          headshot={profilePic}
           name="Nguyen Nguyen"
           tagline="A traveller on his journey to universe knowledge!"
           role="Fullstack Developer @ Integrify"

@@ -6,14 +6,12 @@ const Bio = ({ headshot, name, tagline, role }) => {
   return (
     <div className={styles.bio}>
       <div className={styles.bioImage}>
-        {/* <Image
+        <Image
           src={headshot}
           alt={`Avatar of ${name}`}
-          width={1080}
-          height={1390}
-          layout="responsive"
-        /> */}
-        <img src={headshot} alt={`Avatar of ${name}`} />
+          width="400"
+          height="400"
+        />
       </div>
       <div className={styles.bioContent}>
         <p className={styles.bioContentName}>{name}</p>
