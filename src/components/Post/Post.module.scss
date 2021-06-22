@@ -1,27 +1,126 @@
-.postsContent {
-  font-size: 34px;
-  line-height: 43px;
-  margin-bottom: 0.4em;
+$gradient-color: linear-gradient(
+  to right bottom,
+  rgba(40, 37, 214, 0.8),
+  rgba(241, 144, 92, 0.8)
+);
+
+.post {
+  // border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  background-color: #4948a7;
+  color: white;
+  box-shadow: 0.8rem 1rem rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+
+  &:hover .backgroundImage {
+    transform: scale(1);
+  }
+  &:hover .clickMe {
+    opacity: 1;
+  }
+  &:hover .publicationData {
+    opacity: 1;
+  }
 }
 
-.postsMeta {
+.postImage {
+  // width: 250px;
+  height: 20em;
+  padding: 0 !important;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: url("../../../public/3.jpg") center no-repeat;
+  background-size: cover;
+  transition: transform 5s;
+  transform: scale(1.5);
+}
+
+.publicationData {
+  width: 100%;
+  height: 100%;
+  background: $gradient-color;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+
+  transition: all 0.8s;
+}
+
+.clickMe {
+  display: inline-block;
+  transition: all 0.8s;
+  opacity: 0;
+  border: 1px solid white;
+  padding: 0.5em 1em;
+  margin: auto;
+  cursor: pointer;
+}
+
+.postText {
+  padding: 2rem 3rem;
+  position: relative;
+}
+
+.postContent {
+  font-size: 34px;
+  // line-height: 43px;
+  margin-bottom: 0.4em;
+  max-width: 500px;
+  // padding: 1em 0 0;
+}
+
+.postMeta {
   display: flex;
   align-items: center;
   list-style: none;
   padding: 0;
 }
 
-.postsMetaData {
+.postMetaData {
   display: flex;
   align-items: center;
   font-weight: 600;
   font-size: 26px;
   line-height: 33px;
-  margin-top: 0.4em;
+  // margin-top: 0.4em;
   margin-right: 1em;
 
   svg {
     font-size: 0.85em;
     margin-right: 0.3em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .post {
+    width: 400px;
+  }
+  .postImage {
+    height: 15em;
+  }
+  .postContent,
+  .postMetaData {
+    font-size: 20px;
   }
 }

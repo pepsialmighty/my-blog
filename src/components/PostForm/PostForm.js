@@ -18,7 +18,7 @@ const PostForm = ({ onSubmit }) => {
   }
 
   return (
-    <form onSubmit={handleOnSubmit}>
+    <form onSubmit={handleOnSubmit} className={styles.form}>
       <textarea name="content" className={styles.formContent}></textarea>
       <button className={styles.formButton}>Add New Post</button>
     </form>

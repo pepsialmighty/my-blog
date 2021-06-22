@@ -9,6 +9,7 @@ import Post from "../components/Post";
 import PostForm from "../components/PostForm";
 import styles from "../styles/Home.module.scss";
 import profilePic from "../../public/static/images/profile.jpg";
+import NavBar from "../components/NavBar/NavBar";
 
 export default function Home({ posts: defaultPosts }) {
   const { user, logIn, logOut } = useAuth();
@@ -47,6 +48,8 @@ export default function Home({ posts: defaultPosts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <NavBar />
+
       {!user && (
         <p>
           <button onClick={logIn}>Log In</button>
@@ -66,6 +69,8 @@ export default function Home({ posts: defaultPosts }) {
           role="Fullstack Developer @ Integrify"
         />
 
+        {user && <PostForm onSubmit={handleOnSubmit} />}
+
         <ul className={styles.post}>
           {postsSorted.map((post) => {
             const { content, id, date } = post;
@@ -82,8 +87,6 @@ export default function Home({ posts: defaultPosts }) {
             );
           })}
         </ul>
-
-        {user && <PostForm onSubmit={handleOnSubmit} />}
       </main>
     </div>
   );
