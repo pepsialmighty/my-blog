@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 
 import { useAuth } from "../hooks/useAuth";
+import { getAllPosts, createPost } from "../lib/posts";
 
 import Bio from "../components/Bio";
 import Post from "../components/Post";
@@ -8,10 +10,34 @@ import PostForm from "../components/PostForm";
 import styles from "../styles/Home.module.scss";
 import profilePic from "../../public/static/images/profile.jpg";
 
-export default function Home() {
-  const { user, logIn } = useAuth();
+export default function Home({ posts: defaultPosts }) {
+  const { user, logIn, logOut } = useAuth();
+  const [posts, setPosts] = useState(defaultPosts);
 
-  console.log("user", user);
+  const postsSorted = posts.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/posts`,
+      );
+      const { posts } = await response.json();
+      setPosts(posts);
+    };
+
+    getData();
+  }, []);
+
+  const handleOnSubmit = async (data, e) => {
+    e.preventDefault();
+
+    await createPost(data);
+
+    const posts = await getAllPosts();
+    setPosts(posts);
+  };
 
   return (
     <div className={styles.container}>
@@ -21,9 +47,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <p>
-        <button onClick={logIn}>Log In</button>
-      </p>
+      {!user && (
+        <p>
+          <button onClick={logIn}>Log In</button>
+        </p>
+      )}
+      {user && (
+        <p>
+          <button onClick={logOut}>Log Out</button>
+        </p>
+      )}
 
       <main className={styles.main}>
         <Bio
@@ -34,29 +67,34 @@ export default function Home() {
         />
 
         <ul className={styles.post}>
-          <li>
-            <Post content="Hey I'm a new post" date="6/22/2021" />
-          </li>
-          <li>
-            <Post
-              content="
-              I’m working with Figma trying to design a new website that show
-              all of my tweets!"
-              date="2/26/2021"
-            />
-          </li>
-          <li>
-            <Post
-              content="
-              I’m working with Figma trying to design a new website that show
-              all of my tweets!"
-              date="2/26/2021"
-            />
-          </li>
+          {postsSorted.map((post) => {
+            const { content, id, date } = post;
+            return (
+              <li key={id}>
+                <Post
+                  content={content}
+                  date={new Intl.DateTimeFormat("en-US", {
+                    dateStyle: "short",
+                    timeStyle: "short",
+                  }).format(new Date(date))}
+                />
+              </li>
+            );
+          })}
         </ul>
 
-        <PostForm />
+        {user && <PostForm onSubmit={handleOnSubmit} />}
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const posts = await getAllPosts();
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }

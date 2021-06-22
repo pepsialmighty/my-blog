@@ -1,6 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { init, logIn as authLogIn } from "../lib/auth";
+import {
+  auth,
+  init,
+  logIn as authLogIn,
+  logOut as authLogOut,
+} from "../lib/auth";
 
 // Create context for authentication
 export const AuthContext = createContext();
@@ -12,16 +17,30 @@ export const AuthProvider = ({ children }) => {
     init((user) => {
       setUser(user);
     });
+
+    auth.on("login", setUser);
+
+    return () => {
+      auth.off("login", setUser);
+    };
   }, []);
 
   function logIn() {
-    authLogIn();
-    console.log("log in");
+    authLogIn((user) => {
+      setUser(user);
+    });
+  }
+
+  function logOut() {
+    authLogOut(() => {
+      setUser(undefined);
+    });
   }
 
   const contextValue = {
     user,
     logIn,
+    logOut,
   };
 
   return (
