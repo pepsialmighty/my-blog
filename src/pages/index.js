@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { useAuth } from "../hooks/useAuth";
 import { getAllPosts, createPost } from "../lib/posts";
@@ -38,6 +39,8 @@ export default function Home({ posts: defaultPosts }) {
 
     const posts = await getAllPosts();
     setPosts(posts);
+
+    console.log(posts);
   };
 
   return (
@@ -50,17 +53,6 @@ export default function Home({ posts: defaultPosts }) {
 
       <NavBar />
 
-      {!user && (
-        <p>
-          <button onClick={logIn}>Log In</button>
-        </p>
-      )}
-      {user && (
-        <p>
-          <button onClick={logOut}>Log Out</button>
-        </p>
-      )}
-
       <main className={styles.main}>
         <Bio
           headshot={profilePic}
@@ -72,20 +64,35 @@ export default function Home({ posts: defaultPosts }) {
         {user && <PostForm onSubmit={handleOnSubmit} />}
 
         <ul className={styles.post}>
-          {postsSorted.map((post) => {
-            const { content, id, date } = post;
-            return (
-              <li key={id}>
-                <Post
-                  content={content}
-                  date={new Intl.DateTimeFormat("en-US", {
-                    dateStyle: "short",
-                    timeStyle: "short",
-                  }).format(new Date(date))}
-                />
-              </li>
-            );
-          })}
+          <AnimatePresence
+            // initial={false}
+            transition={{ ease: "linear", duration: 1, type: "tween" }}
+          >
+            {postsSorted.map((post) => {
+              const { content, id, date } = post;
+              return (
+                <motion.li
+                  key={id}
+                  positionTransition
+                  initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.5,
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  <Post
+                    content={content}
+                    date={new Intl.DateTimeFormat("en-US", {
+                      dateStyle: "short",
+                      timeStyle: "short",
+                    }).format(new Date(date))}
+                  />
+                </motion.li>
+              );
+            })}
+          </AnimatePresence>
         </ul>
       </main>
     </div>

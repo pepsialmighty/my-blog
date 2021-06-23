@@ -1,16 +1,25 @@
-import Image from "next/image";
-
 import { FaHeart, FaShareAlt } from "react-icons/fa";
-import { BsFillPersonFill } from "react-icons/bs";
+import { motion } from "framer-motion";
 
 import styles from "./Post.module.scss";
-import coverPic from "../../../public/static/images/profile.jpg";
 
 const Post = ({ content, date }) => {
+  const postVariants = {
+    opened: {},
+    closed: {},
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
-    <div className={styles.post}>
+    <motion.div
+      className={styles.post}
+      initial="hidden"
+      animate="visible"
+      variants={postVariants}
+      transition={{ ease: "easeOut", duration: 0.8, type: "tween" }}
+    >
       <div className={styles.postImage}>
-        {/* <Image  className={styles.backgroundImage} src={coverPic} alt="cover photo" width="200" height="204" /> */}
         <div className={styles.backgroundImage}></div>
         <div className={styles.publicationData}>
           <div className={styles.clickMe}>
@@ -32,7 +41,7 @@ const Post = ({ content, date }) => {
           <li className={styles.postMetaData}>{date}</li>
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

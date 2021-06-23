@@ -1,3 +1,6 @@
+$post-color: #3c415c;
+$text-color: #b4a5a5;
+
 .form {
   margin: 5em 0;
 }
@@ -14,10 +17,12 @@
 }
 
 .formButton {
-  background: #4948a7;
+  background: $post-color;
   border-radius: 5px;
-  color: white;
+  color: $text-color;
   border: 0;
   padding: 0.6em 1em;
-  font-size: 1.1em;
+  font-size: 1.4em;
+  font-weight: 500;
+  cursor: pointer;
 }

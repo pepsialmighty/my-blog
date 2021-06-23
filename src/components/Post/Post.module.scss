@@ -4,14 +4,19 @@ $gradient-color: linear-gradient(
   rgba(241, 144, 92, 0.8)
 );
 
+$post-color: #3c415c;
+$text-color: #b4a5a5;
+
 .post {
   // border: 1px solid black;
   display: flex;
   flex-direction: column;
-  background-color: #4948a7;
-  color: white;
-  box-shadow: 0.8rem 1rem rgba(0, 0, 0, 0.05);
+  background-color: $post-color;
+  color: $text-color;
+  box-shadow: 0.8rem 1rem rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
 
   &:hover .backgroundImage {
     transform: scale(1);
@@ -53,7 +58,7 @@ $gradient-color: linear-gradient(
   background: $gradient-color;
   font-size: 1.4rem;
   font-weight: bold;
-  color: #fff;
+  color: $text-color;
 
   position: absolute;
   top: 0;
@@ -71,7 +76,7 @@ $gradient-color: linear-gradient(
   display: inline-block;
   transition: all 0.8s;
   opacity: 0;
-  border: 1px solid white;
+  border: 1px solid $text-color;
   padding: 0.5em 1em;
   margin: auto;
   cursor: pointer;

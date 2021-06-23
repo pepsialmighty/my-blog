@@ -1,14 +1,8 @@
-// .navBar {
-//   svg {
-//     z-index: 3;
-//     position: fixed;
-//     top: 20px;
-//     left: 35px;
-//   }
-// }
+$navbar-color: #301b3f;
+$text-color: #b4a5a5;
 
 .menu {
-  background-color: #4948a7;
+  background-color: $navbar-color;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -21,8 +15,14 @@
   justify-content: center;
   align-items: center;
 
+  button {
+    background-color: transparent;
+    min-width: 15em;
+    border: none;
+  }
+
   h1 {
-    color: white;
+    color: $text-color;
   }
 }
 
@@ -31,4 +31,13 @@
   position: fixed;
   top: 32px;
   right: 25px;
+}
+
+.authorized {
+  position: absolute;
+  bottom: 100px;
+
+  p {
+    color: $text-color;
+  }
 }

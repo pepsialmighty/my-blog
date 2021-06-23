@@ -1,4 +1,5 @@
-$primary-color: blueviolet;
+$primary-color: #151515;
+$text-color: #b4a5a5;
 
 .container {
   min-height: 100vh;
@@ -7,11 +8,13 @@ $primary-color: blueviolet;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: $primary-color;
 }
 
 .main {
   max-width: 800px;
   padding: 5rem 0;
+  margin-top: 5em;
 }
 
 .title {
@@ -43,26 +46,4 @@ $primary-color: blueviolet;
       margin-bottom: 0;
     }
   }
-}
-
-.formContent {
-  width: 100%;
-  font-size: 1.4em;
-  padding: 0.8em;
-  min-height: 6em;
-  font-family: "Source Sans Pro", sans-serif;
-
-  border: 2px solid #939191;
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin-bottom: 1em;
-}
-
-.formButton {
-  background-color: #4948a7;
-  border-radius: 5px;
-  color: white;
-  border: 0;
-  padding: 0.6em 1em;
-  font-size: 1.1em;
 }

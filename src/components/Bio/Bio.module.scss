@@ -1,3 +1,7 @@
+$navbar-color: #301b3f;
+$post-color: #3c415c;
+$text-color: #b4a5a5;
+
 .bio {
   display: flex;
   justify-content: space-around;
@@ -43,7 +47,7 @@
   font-weight: bold;
   font-size: 52px;
   line-height: 65px;
-  color: #4948a7;
+  color: $post-color;
   margin: 0;
 }
 
@@ -59,6 +63,6 @@
   font-weight: bold;
   font-size: 29px;
   line-height: 36px;
-  color: #414141;
+  color: #554e4e;
   margin: 0;
 }

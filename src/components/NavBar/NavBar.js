@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Button from "@material-ui/core/Button";
 
 import styles from "./NavBar.module.scss";
 import { useAuth } from "../../hooks/useAuth";
@@ -9,6 +8,8 @@ import { useAuth } from "../../hooks/useAuth";
 const NavBar = () => {
   const { user, logIn, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(user);
 
   const iconVariants = {
     opened: {
@@ -56,28 +57,47 @@ const NavBar = () => {
         animate={isOpen ? "opened" : "closed"}
       >
         {!user && (
-          <Button onClick={logIn}>
+          <motion.button
+            onClick={logIn}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <h1>Log In</h1>
-          </Button>
+          </motion.button>
         )}
         {user && (
-          <Button onClick={logOut}>
-            <h1>Log In</h1>
-          </Button>
+          <motion.button
+            onClick={logOut}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <h1>Log Out</h1>
+          </motion.button>
         )}
         <Link href="https://github.com/pepsialmighty/my-blog" passHref={true}>
-          <Button onClick={logOut}>
+          <motion.button
+            onClick={logOut}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <h1>Visit Github</h1>
-          </Button>
+          </motion.button>
         </Link>
         <Link
           href="https://assets.ctfassets.net/449mcwf87tn4/2wDf2yYSCwyhudfgE1NGp8/da9dce6097a9d1a515af8e3bf1e3494f/Nguyen_Nguyen_-_Integrify_CV_-_07.05.2021.pdf"
           passHref={true}
         >
-          <Button onClick={logOut}>
+          <motion.button
+            onClick={logOut}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <h1>Resume</h1>
-          </Button>
+          </motion.button>
         </Link>
+        <div className={styles.authorized}>
+          <p>©2021 by Nguyen Nguyen</p>
+        </div>
       </motion.div>
     </div>
   );

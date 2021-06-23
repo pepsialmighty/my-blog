@@ -1,10 +1,23 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import styles from "./Bio.module.scss";
 
 const Bio = ({ headshot, name, tagline, role }) => {
+  const bioVariants = {
+    opened: {},
+    closed: {},
+    hidden: { opacity: 0, y: +20 },
+    visible: { opacity: 1, y: 0 },
+  };
   return (
-    <div className={styles.bio}>
+    <motion.div
+      className={styles.bio}
+      initial="hidden"
+      animate="visible"
+      variants={bioVariants}
+      transition={{ ease: "easeOut", duration: 1 }}
+    >
       <div className={styles.bioImage}>
         <Image
           src={headshot}
@@ -18,7 +31,7 @@ const Bio = ({ headshot, name, tagline, role }) => {
         <p className={styles.bioContentTagline}>{tagline}</p>
         <p className={styles.bioContentRole}>{role}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
