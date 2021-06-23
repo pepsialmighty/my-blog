@@ -1,5 +1,3 @@
-import { getAllPosts } from "../../../lib/posts";
-
 export default async function handler(req, res) {
   const postId = req.query.id;
   const response = await fetch(
