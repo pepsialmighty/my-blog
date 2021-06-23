@@ -88,45 +88,45 @@ const post = ({ post }) => {
   );
 };
 
-// export const getServerSideProps = async (context) => {
-//   const post = await getPostById(context.params.id);
-
-//   return {
-//     props: { post },
-//   };
-// };
-
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const post = await getPostById(context.params.id);
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  }
 
   return {
     props: { post },
   };
 };
 
-export const getStaticPaths = async () => {
-  const posts = await getAllPosts();
+// export const getStaticProps = async (context) => {
+//   const post = await getPostById(context.params.id);
 
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  }
+//   if (!post) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  const ids = posts.map((post) => post.id);
+//   return {
+//     props: { post },
+//   };
+// };
 
-  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
+// export const getStaticPaths = async () => {
+//   const posts = await getAllPosts();
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   if (!post) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   const ids = posts.map((post) => post.id);
+
+//   const paths = ids.map((id) => ({ params: { id: id.toString() } }));
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
 export default post;
