@@ -9,8 +9,6 @@ const NavBar = () => {
   const { user, logIn, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(user);
-
   const iconVariants = {
     opened: {
       rotate: 45,

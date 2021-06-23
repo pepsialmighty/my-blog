@@ -63,8 +63,6 @@ export default async function handler(req, res) {
       },
     );
 
-    console.log("response", response);
-
     res.status(201).json({ response });
     return;
   }

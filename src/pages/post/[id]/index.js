@@ -6,8 +6,6 @@ import { getAllPosts, getPostById } from "../../../lib/posts";
 import styles from "./Post.module.scss";
 
 const post = ({ post }) => {
-  console.log(post);
-
   // const router = useRouter();
   // const { id } = router.query;
 

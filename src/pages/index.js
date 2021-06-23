@@ -40,8 +40,6 @@ export default function Home({ posts: defaultPosts }) {
 
     const posts = await getAllPosts();
     setPosts(posts);
-
-    console.log(posts);
   };
 
   return (
