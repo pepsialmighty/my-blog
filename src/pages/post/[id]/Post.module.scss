@@ -1,0 +1,20 @@
+$post-color: #3c415c;
+$text-color: #b4a5a5;
+$primary-color: #151515;
+
+.post {
+  display: flex;
+  flex-direction: column;
+  //   justify-content: center;
+  align-items: center;
+  padding: 16em 0;
+
+  background-color: $primary-color;
+  color: $text-color;
+  height: 100vh;
+  width: 100vw;
+}
+
+.postButton {
+  cursor: pointer;
+}

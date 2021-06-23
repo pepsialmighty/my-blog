@@ -8,6 +8,15 @@ export async function getAllPosts() {
   return posts;
 }
 
+export async function getPostById(id) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/posts/${id}`,
+  );
+
+  const post = await response.json();
+  return post;
+}
+
 export async function createPost(data) {
   const user = auth.currentUser();
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useAuth } from "../hooks/useAuth";
@@ -71,25 +72,26 @@ export default function Home({ posts: defaultPosts }) {
             {postsSorted.map((post) => {
               const { content, id, date } = post;
               return (
-                <motion.li
-                  key={id}
-                  positionTransition
-                  initial={{ opacity: 0, y: 50, scale: 0.3 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.5,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  <Post
-                    content={content}
-                    date={new Intl.DateTimeFormat("en-US", {
-                      dateStyle: "short",
-                      timeStyle: "short",
-                    }).format(new Date(date))}
-                  />
-                </motion.li>
+                <Link key={id} href="/post/[id]" as={`/post/${id}`} passHref>
+                  <motion.li
+                    positionTransition
+                    initial={{ opacity: 0, y: 100, scale: 0.3 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.5,
+                      transition: { duration: 0.2 },
+                    }}
+                  >
+                    <Post
+                      content={content}
+                      date={new Intl.DateTimeFormat("en-US", {
+                        dateStyle: "short",
+                        timeStyle: "short",
+                      }).format(new Date(date))}
+                    />
+                  </motion.li>
+                </Link>
               );
             })}
           </AnimatePresence>
