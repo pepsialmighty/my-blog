@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     };
   });
 
-  const filtered = posts.filter((post) => (post.id = postId));
+  const filtered = posts.filter((post) => post.id === postId);
 
   if (filtered.length > 0) {
     res.status(200).json(filtered[0]);
