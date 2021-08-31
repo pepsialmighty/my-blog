@@ -63,7 +63,6 @@ const PostForm = ({ onSubmit }) => {
         id="filled-full-width"
         name="content"
         multiline
-        // label="Create New Post"
         style={{ background: "#301b3f", color: "#b4a5a5" }}
         placeholder="What are you thinking now?"
         fullWidth
